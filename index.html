@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        list-style: none;
+    }
+    
+    body {
+        height: 100%;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #454;
+    }
+    
+    .container {
+        height: 70vh;
+        width: 70vw;
+        border: 3px solid white;
+        border-radius: 10px;
+        margin-top: 20px;
+        overflow: scroll;
+    }
+    
+    .container::-webkit-scrollbar {
+        width: 0;
+    }
+    
+    .container .box {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 30px;
+    }
+    
+    .container .box input {
+        height: 30px;
+        width: 70%;
+        border: none;
+        box-shadow: 0px 0px 10px;
+        border-radius: 10px;
+        cursor: pointer;
+    }
+    
+    .container .box button {
+        height: 35px;
+        width: 60px;
+        border: none;
+        margin-left: 10px;
+        background-color: black;
+        border-radius: 10px;
+        color: #fff;
+        font-size: 15px;
+        font-family: sans-serif;
+        cursor: pointer;
+    }
+    
+    .ul {
+        padding: 30px;
+    }
+    
+    .ul ul {
+        font-size: 20px;
+        font-family: sans-serif;
+        font-weight: 100;
+    }
+    
+    .ul ul li {
+        background-color: #454545;
+        color: #fff;
+        padding: 10px;
+        border-radius: 10px;
+        display: flex;
+        justify-content: space-between;
+        margin: 10px;
+    }
+    
+    .click {
+        text-decoration: line-through;
+        color: silver;
+        background-color: silver;
+    }
+    
+    h1 {
+        font-size: 30px;
+        text-align: center;
+        margin-top: 20px;
+        font-size: 40px;
+        font-family: sans-serif;
+    }
+</style>
+
+<body>
+    <div class="container">
+        <h1>Todo app by js</h1>
+        <div class="box" id="1000
+        
+        ">
+            <input type="text" name="" id="box" placeholder="Enter">
+        </div>
+        <div class="ul">
+            <ul id="todobox">
+                <!-- <li>
+                    now i am going to sleep
+                    <i class="fa-solid fa-xmark"></i>
+                </li> -->
+            </ul>
+        </div>
+    </div>
+
+</body>
+<script>
+    let box = document.getElementById("box");
+    let todobox = document.getElementById("todobox");
+    let ok = document.getElementById("ok");
+
+    box.addEventListener("keyup", function(data) {
+        if (data.key == "Enter") {
+            addtodo(this.value);
+            this.value = "";
+        }
+    });
+
+
+    const addtodo = function(item) {
+        const display = document.createElement("li");
+        display.innerHTML = `
+    ${item}
+    <i class="fa-solid fa-xmark" id="ok"></i>
+    `
+        display.addEventListener("click", function() {
+            this.classList.toggle("click");
+            ok.classList.remove("click");
+
+        })
+        display.querySelector("i").addEventListener("click", function() {
+            display.remove();
+        })
+
+        todobox.appendChild(display);
+    }
+    addtodo();
+</script>
+
+</html>
